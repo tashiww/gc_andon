@@ -12,6 +12,9 @@ export default function RouteNav() {
 				<li>
 					<a href="help">Help</a>
 				</li>
+				<li>
+					<a href="test">test</a>
+				</li>
 			</ul>
 		</nav>
 	)

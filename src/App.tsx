@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useLoaderData,
+} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./index.scss";
+import InventoryOverview from "./routes/InventoryOverview";
+
+let router = createBrowserRouter([
+  {
+    path: "/",
+    loader: () => ({}),
+    Component() {
+      return <InventoryOverview></InventoryOverview>;
+    },
+  },
+  {
+    path: "/test",
+    loader: () => ({ message: "Hello Data test!" }),
+    Component() {
+      let data = useLoaderData() as { message: string };
+      return <h1>{data.message}</h1>;
+    },
+  },
+], { basename: "/gcandon/" });
+
+export default function App() {
+  return <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />;
 }
-
-export default App;
